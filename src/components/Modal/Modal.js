@@ -2,27 +2,19 @@ import { useEffect } from "react";
 import PropTypes from 'prop-types';
 import { Overlay, Window } from './Modal.Styled.jsx';
 
-export const Modal = ({src, closeModal}) => {
-  
+export const Modal =({src, closeModal}) => {
+
   useEffect(() => {
     window.addEventListener('keydown', onCloseEsc);
   });
   
-  // componentDidMount() {
-  //   window.addEventListener('keydown', this.onCloseEsc);
-  // }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener('keydown', this.onCloseEsc);
-  // }
-
-  const closeModal = () => {
+  const closeModals = () => {
     closeModal()
   }
 
   const onCloseEsc = (e) => {
     if (e.code === 'Escape') {
-      closeModal()
+      closeModals()
     }
   }
 
