@@ -5,18 +5,19 @@ import { Overlay, Window } from './Modal.Styled.jsx';
 export const Modal = ({src, closeModal}) => {
 
   useEffect(() => {
+    
+    const onCloseEsc = e => {
+      if (e.code === 'Escape') {
+        closeModalWindow();
+      }
+    };
+
     window.addEventListener('keydown', onCloseEsc);
   });
   
-  const closeModalWindow = () => {
-    closeModal()
-  }
-
-  const onCloseEsc = (e) => {
-    if (e.code === 'Escape') {
-      closeModalWindow()
-    }
-  }
+    const closeModalWindow = () => {
+      closeModal();
+    };
 
     return (
       <Overlay onClick={closeModal}>
