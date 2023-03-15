@@ -11,21 +11,20 @@ export function App() {
   const [inputValue, setInputValue] = useState(null);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [showBtn] = useState(false);
+  const [showBtn, setShowBtn] = useState(false);
 
   useEffect(() => {
-    setIsLoading(isLoading.true)
+    setIsLoading(true);
 
-         getImages(inputValue, page)
-        .then(cards =>
-          setCard(prev => ({
-            card: [...prev.card, ...cards.hits],
-          showBtn: page < Math.ceil(cards.totalHits / 12)
-        })))
+    getImages(inputValue, page)
+      .then(({ hits }) => {
+        setCard(prevState => [...prevState, ...hits]);
+          setShowBtn(page <Math.ceil(totalHits / 12)) 
+        })
       .catch(error => {
         setPage(error)
       .finally(() => {
-        isLoading.false
+         setIsLoading(false);
       })
     })
   }, [inputValue, page]);
