@@ -17,7 +17,7 @@ export function App() {
     setIsLoading(true);
 
     getImages(inputValue, page)
-      .then(({ hits }) => {
+      .then(({ hits, totalHits }) => {
         setCard(prevState => [...prevState, ...hits]);
           setShowBtn(page <Math.ceil(totalHits / 12)) 
         })
@@ -29,37 +29,26 @@ export function App() {
     })
   }, [inputValue, page]);
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.page !== this.state.page ||
-  //     prevState.inputValue !== this.state.inputValue) {
-
-  //     this.setState({ isLoading: true });
-
-  //     getImages(this.state.inputValue, this.state.page)
-  //       .then(cards =>
-  //         this.setState(prev => ({
-  //           card: [...prev.card, ...cards.hits],
-  //         showBtn: this.state.page < Math.ceil(cards.totalHits / 12)
-  //       })))
-  //       .catch(error => console.log(error))
-  //       .finally(()=> this.setState({ isLoading: false}));
-  //   }
-  // };
-
-  findImage = e => {
-    this.setState({ card: [], page: 1, inputValue: e.search });
+    const findImage = e => {
+      if (e.search === '') {
+        alert('Error')
+      } else {
+        setPage(1);
+        setInputValue(e.search);
+        setCard([]);
+        setIsLoading(true)
+      }
   };
-
-  addPages = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }))
-  };
-
   
+   const addPages = () => {
+    setPage(page + 1 )
+  };
+
     return (
       <AppStyled>
-        <Searchbar onSubmit={this.findImage} />
+        <Searchbar onSubmit={findImage} />
         <ImageGallery img={card} />
-        {showBtn && isLoading === false && <Btn addPages={this.addPages} />}
+        {showBtn && isLoading === false && <Btn addPages={addPages} />}
         {isLoading !== false && (<Loader/>)}
       </AppStyled>
     );
