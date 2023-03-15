@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal } from "components/Modal/Modal";
 import './GalleryItem.styled.css';
 
-export const ImageGalleryItem = (largeImageURL, tags) => {
+export const ImageGalleryItem = ({ largeImageURL, tags }) => {
   const [openModal, setOpenModal] = useState(false);
   const [src, setSrc] = useState('');
 
