@@ -1,5 +1,4 @@
-import { Component } from "react";
-import React from "react";
+import { useEffect, useState } from "react";
 import getImages from "services/api";
 import { Searchbar } from "./Searchbar/Searchbar";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
@@ -7,14 +6,24 @@ import { Btn } from "./Button/Button";
 import { Loader } from "./Loader/Loader";
 import { AppStyled } from "App.Styled";
 
-export class App extends Component {
-  state = {
-    card: [],
-    inputValue: null,
-    page: 1,
-    isLoading: false,
-    showBtn: false
-  };
+export function App() {
+  const [card, setCard] = useState([]);
+  const [inputValue, setInputValue] = useState(null),
+  const [page, setPage] = useState(1),
+  const [isLoading, setIsLoading] = useState(false);
+  const [showBtn] = useState(false);
+
+  useEffect(() => {
+    setStatus(isLoading.true)
+
+      .catch(error => {
+        setError(error);
+        setStatus()
+      .finally(() => {
+        isLoading.false
+      })
+    })
+  });
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.page !== this.state.page ||
@@ -41,14 +50,13 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }))
   };
 
-  render(){
+  
     return (
       <AppStyled>
         <Searchbar onSubmit={this.findImage} />
-        <ImageGallery img={this.state.card} />
-        {this.state.showBtn && this.state.isLoading === false && <Btn addPages={this.addPages} />}
-        {this.state.isLoading !== false && (<Loader/>)}
+        <ImageGallery img={card} />
+        {showBtn && isLoading === false && <Btn addPages={this.addPages} />}
+        {isLoading !== false && (<Loader/>)}
       </AppStyled>
     );
   };
-};
