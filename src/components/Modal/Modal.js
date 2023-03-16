@@ -13,7 +13,7 @@ export const Modal = ({src, closeModal}) => {
     };
 
     window.addEventListener('keydown', onCloseEsc);
-    return window.removeEventListener('keydown', onCloseEsc);
+    return () => window.removeEventListener('keydown', onCloseEsc);
   });
   
   const closeModalWindow = (e) => {
@@ -24,7 +24,7 @@ export const Modal = ({src, closeModal}) => {
   
 
     return (
-      <Overlay onClick={closeModal}>
+      <Overlay onClick={closeModalWindow}>
         <Window>
           <img src={src} alt="modalWindow" width="700" />
         </Window>

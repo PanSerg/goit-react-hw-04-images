@@ -53,7 +53,7 @@ export function App() {
         <Searchbar onSubmit={findImage} />
         <ImageGallery img={card} />
         {showBtn && isLoading === false && <Btn addPages={addPages} />}
-        {isLoading !== false && (<Loader/>)}
+        {isLoading && (<Loader/>)}
       </AppStyled>
     );
   };
