@@ -23,14 +23,14 @@ export function App() {
     getImages(inputValue, page)
       .then(({ hits, totalHits }) => {
         setCard(prevState => [...prevState, ...hits]);
-          setShowBtn(page <Math.ceil(totalHits / 12)) 
+          setShowBtn(page < Math.ceil(totalHits / 12)) 
         })
       .catch(error => {
         setPage(error)
-      .finally(() => {
+      })
+    .finally(() => {
          setIsLoading(false);
       })
-    })
   }, [inputValue, page]);
 
     const findImage = e => {
@@ -40,7 +40,7 @@ export function App() {
         setPage(1);
         setInputValue(e.search);
         setCard([]);
-        // setIsLoading(true)
+        setIsLoading(true)
       }
   };
   
@@ -53,7 +53,7 @@ export function App() {
         <Searchbar onSubmit={findImage} />
         <ImageGallery img={card} />
         {showBtn && isLoading === false && <Btn addPages={addPages} />}
-        {isLoading && (<Loader/>)}
+        {isLoading && <Loader/>}
       </AppStyled>
     );
   };

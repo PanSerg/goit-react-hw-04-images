@@ -22,7 +22,6 @@ export const Modal = ({src, closeModal}) => {
       }
   };
   
-
     return (
       <Overlay onClick={closeModalWindow}>
         <Window>
