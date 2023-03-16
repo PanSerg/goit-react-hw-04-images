@@ -40,7 +40,7 @@ export function App() {
         setPage(1);
         setInputValue(e.search);
         setCard([]);
-        setIsLoading(true)
+        // setIsLoading(true)
       }
   };
   
