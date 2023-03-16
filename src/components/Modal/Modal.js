@@ -13,11 +13,15 @@ export const Modal = ({src, closeModal}) => {
     };
 
     window.addEventListener('keydown', onCloseEsc);
+    return window.removeEventListener('keydown', onCloseEsc);
   });
   
-    const closeModalWindow = () => {
-      closeModal();
-    };
+  const closeModalWindow = (e) => {
+      if(e.target === e.current.target){
+        closeModal();
+      }
+  };
+  
 
     return (
       <Overlay onClick={closeModal}>

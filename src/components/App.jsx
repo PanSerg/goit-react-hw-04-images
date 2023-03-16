@@ -8,12 +8,16 @@ import { AppStyled } from "App.Styled";
 
 export function App() {
   const [card, setCard] = useState([]);
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState('');
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
 
   useEffect(() => {
+    if (!inputValue) {
+      return;
+    }
+
     setIsLoading(true);
 
     getImages(inputValue, page)
