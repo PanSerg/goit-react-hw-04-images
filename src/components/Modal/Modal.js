@@ -17,7 +17,7 @@ export const Modal = ({src, closeModal}) => {
   });
   
   const closeModalWindow = (e) => {
-      if(e.target === e.current.target){
+      if(e.target === e.currentTarget){
         closeModal();
       }
   };
