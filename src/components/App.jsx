@@ -44,8 +44,8 @@ export function App() {
       }
   };
   
-   const addPages = () => {
-    setPage(page + 1 )
+  const addPages = () => {
+     setPage(page => page + 1)
   };
 
     return (
